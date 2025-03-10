@@ -25,5 +25,4 @@ This is a simple Flask web application that allows users to register, log in, up
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/flask-pdf-upload-text-extraction.git
-cd flask-pdf-upload-text-extraction
+https://github.com/chethan722003/pdfToText.git
