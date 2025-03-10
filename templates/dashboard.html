@@ -1,0 +1,21 @@
+<h2>Dashboard</h2>
+<p>Welcome, {{ name }}! You can now upload a PDF for text extraction.</p>
+
+<!-- Upload PDF Link -->
+<p><a href="{{ url_for('upload') }}">Upload PDF</a></p>
+
+<!-- Show Extracted Files -->
+{% if files %}
+    <h3>Your Uploaded Files</h3>
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file.filename }} - 
+                <a href="{{ url_for('extract_text', file_id=file.id) }}">Extract Text</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- Logout Button -->
+<p><a href="{{ url_for('logout') }}" style="color: red;">Logout</a></p>   

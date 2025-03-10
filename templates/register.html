@@ -1,0 +1,17 @@
+<form method="POST" action="{{ url_for('register') }}">
+  {{ form.hidden_tag() }}  <!-- ✅ CSRF Token -->
+
+  <label>Name</label>
+  {{ form.name }}
+  <br>
+
+  <label>Email</label>
+  {{ form.email }}
+  <br>
+
+  <label>Password</label>
+  {{ form.password }}
+  <br>
+
+  <button type="submit">Register</button>
+</form>

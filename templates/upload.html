@@ -1,0 +1,45 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form method="POST" enctype="multipart/form-data" onsubmit="return validateFile()">
+    {{ form.hidden_tag() }}
+    
+    <label for="pdf_file">Choose a PDF file (Max: 50MB):</label>
+    {{ form.pdf_file }}
+    
+    <button type="submit">Upload</button>
+</form>
+
+<script>
+function validateFile() {
+    var fileInput = document.querySelector('input[type="file"]');
+    var file = fileInput.files[0];
+
+    if (!file) {
+        alert("⚠️ Please select a file.");
+        return false;
+    }
+
+    // Check file type
+    var allowedExtensions = /(\.pdf)$/i;
+    if (!allowedExtensions.exec(file.name)) {
+        alert("⚠️ Invalid file type! Only PDF files are allowed.");
+        fileInput.value = '';  // Clear file input
+        return false;
+    }
+
+    // Check file size (50MB = 50 * 1024 * 1024 bytes)
+    if (file.size > 50 * 1024 * 1024) {
+        alert("⚠️ File is too large! Maximum allowed size is 50MB.");
+        fileInput.value = '';  // Clear file input
+        return false;
+    }
+
+    return true;  // Proceed with upload
+}
+</script>

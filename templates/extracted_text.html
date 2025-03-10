@@ -1,0 +1,25 @@
+<h2>Extracted Text</h2>
+<pre>{{ text }}</pre>
+<input type="hidden" name="file_id" value="{{ file.id if file else '' }}">
+
+<form action="{{ url_for('extract_text') }}" method="POST">
+    <input type="hidden" name="file_id" value="{{ file.id }}">
+    <button type="submit" class="btn btn-primary">Extract Text</button>
+</form>
+
+
+
+<!-- Copy to Clipboard Button -->
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+<!-- Logout Button -->
+<p><a href="{{ url_for('logout') }}" style="color: red;">Logout</a></p>
+
+<script>
+function copyToClipboard() {
+    var text = document.querySelector('pre').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Text copied to clipboard!");
+    });
+}
+</script>
